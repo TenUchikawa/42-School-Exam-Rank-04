@@ -29,7 +29,7 @@ int	exec(char **argv, int i, char **envp)
 	int has_pipe, fd[2], pid, status;
 	has_pipe = argv[i] && !strcmp(argv[i], "|");
 
-	if (!has_pipe && argv[i] && !strcmp(*argv, "cd"))
+	if (!has_pipe && *argv && !strcmp(*argv, "cd"))
 		return cd(argv, i);
 	if (has_pipe && pipe(fd) == -1)
 		err("error: fatal\n"), exit(1);
